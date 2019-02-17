@@ -12,7 +12,7 @@ body {
   height: 100%;
 }
 
-#root>.ant-spin-nested-loading {
+#root > .ant-spin-nested-loading {
   height: 100%;
 }
 

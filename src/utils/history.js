@@ -1,4 +1,4 @@
-import createHashHistory from 'history/createHashHistory'
+import createBrowserHistory from "history/createBrowserHistory";
 
-const customHistory = createHashHistory()
+const customHistory = createBrowserHistory();
 export default customHistory;

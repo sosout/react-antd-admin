@@ -14,8 +14,9 @@
     "react": "^16.8.2",
     "react-content-loader": "^4.0.1",
     "react-dom": "^16.8.2",
+    "react-intl": "^2.8.0",
     "react-loadable": "^5.5.0",
-    "react-redux": "^6.0.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1"
   },
@@ -76,7 +77,17 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "Api": true,
+      "Config": true
+    },
+    "rules": {
+      "jsx-a11y/anchor-is-valid": 0,
+      "no-script-url": 0,
+      "no-new-func": 0,
+      "no-throw-literal": 0
+    }
   },
   "browserslist": [
     ">0.2%",

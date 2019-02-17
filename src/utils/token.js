@@ -1,14 +1,13 @@
-
-const TokenKey = '3YAdmin'
+const TokenKey = "3YAdmin";
 
 export function getToken() {
-  return localStorage.getItem(TokenKey)
+  return localStorage.getItem(TokenKey);
 }
 
 export function setToken(token) {
-  localStorage.setItem(TokenKey,token)
+  localStorage.setItem(TokenKey, token);
 }
 
 export function removeToken() {
-  localStorage.removeItem(TokenKey)
+  localStorage.removeItem(TokenKey);
 }
