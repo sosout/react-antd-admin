@@ -44,7 +44,6 @@ class App extends React.Component {
   render() {
     const { local } = this.props;
     moment.locale(local);
-    console.log(store);
     return (
       <IntlProvider locale={local} messages={langMap[local]} key={local}>
         <LocaleProvider locale={antdLangMap[local]}>

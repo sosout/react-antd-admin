@@ -16,7 +16,24 @@ import constantMenu from "@/constantMenu";
 
 const { Content } = Layout;
 
-class App extends Component {
+@connect(
+  state => {
+    return {
+      name: state.user.name
+    };
+  },
+  dispatch => {
+    return {
+      updateUserInfo: info => {
+        dispatch(updateUserInfo(info));
+      },
+      updateAccessMenu: accessMenu => {
+        dispatch(updateAccessMenu(accessMenu));
+      }
+    };
+  }
+)
+export default class App extends Component {
   state = {
     collapsed: false,
     responsive: false,
@@ -158,21 +175,3 @@ class App extends Component {
     );
   }
 }
-const mapStateToPorps = state => {
-  const { name } = state.user;
-  return { name };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    updateUserInfo: info => {
-      dispatch(updateUserInfo(info));
-    },
-    updateAccessMenu: accessMenu => {
-      dispatch(updateAccessMenu(accessMenu));
-    }
-  };
-};
-export default connect(
-  mapStateToPorps,
-  mapDispatchToProps
-)(App);

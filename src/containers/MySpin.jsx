@@ -1,23 +1,21 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { Spin } from "antd";
 import { connect } from "react-redux";
 
 @connect(
   state => {
-    const { spinLoading } = state.app;
-    return { spinLoading };
-  },
-  null
+    return {
+      spinLoading: state.app.spinLoading
+    }
+  }
 )
-class MySpin extends React.PureComponent {
+export default class MySpin extends PureComponent {
   render() {
-    const PageRouters = this.props.pageRouters;
+    const { pageRouters: PageRouters,  spinLoading} = this.props;
     return (
-      <Spin size="large" spinning={this.props.spinLoading}>
+      <Spin size="large" spinning={spinLoading}>
         <PageRouters />
       </Spin>
     );
   }
 }
-
-export default MySpin;

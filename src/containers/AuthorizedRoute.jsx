@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import MenuToRouter from "@/menuMapToRouter";
 import Page403 from "@/pages/Page403";
 
-class AuthorizedRoute extends React.Component {
+@connect(state => {
+  return {
+    openAccessMenu: state.app.openAccessMenu
+  };
+})
+export default class AuthorizedRoute extends React.Component {
   render() {
     const { component: Component, openAccessMenu, ...props } = this.props;
     const pathname = this.props.location.pathname;
@@ -27,9 +32,3 @@ class AuthorizedRoute extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    openAccessMenu: state.app.openAccessMenu
-  };
-};
-export default connect(mapStateToProps)(AuthorizedRoute);

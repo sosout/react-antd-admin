@@ -14,7 +14,26 @@ const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-class MyHeader extends React.PureComponent {
+@withRouter
+@connect(
+  state => {
+    return {
+      name: state.user.name,
+      avatar: state.user.avatar,
+      currentModule: state.app.currentModule,
+      moduleList: state.app.moduleList,
+      accessMenu: state.app.accessMenu
+    };
+  },
+  dispatch => {
+    return {
+      updateModule: module => {
+        dispatch(updateModule(module));
+      }
+    };
+  }
+)
+export default class MyHeader extends React.PureComponent {
   updateModule = e => {
     let accesseMenu = this.props.accessMenu;
     let moduleList = accesseMenu.filter(item => {
@@ -101,7 +120,7 @@ class MyHeader extends React.PureComponent {
               <li>
                 <a
                   className="item"
-                  href="https://github.com/wjkang/3YAdmin"
+                  href="https://github.com/sosout/react-antd-admin"
                   target={"_blank"}
                 >
                   <Icon type="github" />
@@ -157,26 +176,3 @@ class MyHeader extends React.PureComponent {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    name: state.user.name,
-    avatar: state.user.avatar,
-    currentModule: state.app.currentModule,
-    moduleList: state.app.moduleList,
-    accessMenu: state.app.accessMenu
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    updateModule: module => {
-      dispatch(updateModule(module));
-    }
-  };
-};
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MyHeader)
-);

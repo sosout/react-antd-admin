@@ -14,7 +14,24 @@ import constantMenu from "@/constantMenu";
 
 const { Content } = Layout;
 
-class TabMode extends React.PureComponent {
+@connect(
+  state => {
+    return {
+      name: state.user.name
+    };
+  },
+  dispatch => {
+    return {
+      updateUserInfo: info => {
+        dispatch(updateUserInfo(info));
+      },
+      updateAccessMenu: accessMenu => {
+        dispatch(updateAccessMenu(accessMenu));
+      }
+    };
+  }
+)
+export default class TabMode extends React.PureComponent {
   state = {
     collapsed: false,
     responsive: false,
@@ -147,21 +164,3 @@ class TabMode extends React.PureComponent {
     );
   }
 }
-const mapStateToPorps = state => {
-  const { name } = state.user;
-  return { name };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    updateUserInfo: info => {
-      dispatch(updateUserInfo(info));
-    },
-    updateAccessMenu: accessMenu => {
-      dispatch(updateAccessMenu(accessMenu));
-    }
-  };
-};
-export default connect(
-  mapStateToPorps,
-  mapDispatchToProps
-)(TabMode);

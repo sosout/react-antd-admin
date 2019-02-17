@@ -7,7 +7,13 @@ import util from "@/utils/util";
 
 const TabPane = Tabs.TabPane;
 
-class MyNavTabs extends React.PureComponent {
+@withRouter
+@connect(state => {
+  return {
+    accessMenu: state.app.accessMenu
+  };
+})
+export default class MyNavTabs extends React.PureComponent {
   state = {
     currentPage: "",
     openPages: [
@@ -118,9 +124,3 @@ class MyNavTabs extends React.PureComponent {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    accessMenu: state.app.accessMenu
-  };
-};
-export default withRouter(connect(mapStateToProps)(MyNavTabs));

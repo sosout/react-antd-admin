@@ -5,7 +5,13 @@ import { Breadcrumb, Icon } from "antd";
 import MenuToRouter from "@/menuMapToRouter";
 import util from "@/utils/util";
 
-class MyBreadcrumb extends React.PureComponent {
+@withRouter
+@connect(state => {
+  return {
+    openAccessMenu: state.app.openAccessMenu
+  };
+})
+export default class MyBreadcrumb extends React.PureComponent {
   state = {
     map: [
       {
@@ -61,9 +67,3 @@ class MyBreadcrumb extends React.PureComponent {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    openAccessMenu: state.app.openAccessMenu
-  };
-};
-export default withRouter(connect(mapStateToProps)(MyBreadcrumb));
